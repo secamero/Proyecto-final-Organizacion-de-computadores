@@ -1,0 +1,49 @@
+module async_rom_case
+  ( input wire [7:0] r_addr,
+	 output wire [28:0] r_data
+	);
+
+//body
+always @*
+  case (r_addr)
+     8'h00 : r:data = 29'b; //fetch
+	  8'h01 : r:data = 29'b;
+	  8'h02 : r:data = 29'b;
+	  8'h03 : r:data = 29'b;
+	  8'h04 : r:data = 29'b;
+	  8'h05 : r:data = 29'b; //
+	  8'h06 : r:data = 29'b;
+	  8'h07 : r:data = 29'b;
+	  8'h08 : r:data = 29'b;
+	  8'h09 : r:data = 29'b;
+	  8'h0a : r:data = 29'b;
+	  8'h0b : r:data = 29'b;
+	  8'h0c : r:data = 29'b;
+	  8'h0d : r:data = 29'b;
+	  8'h0e : r:data = 29'b;
+	  8'h0f : r:data = 29'b;
+	  8'h10 : r:data = 29'b;
+	  8'h20 : r:data = 29'b;
+	  8'h30 : r:data = 29'b;
+	  8'h40 : r:data = 29'b;
+	  8'h50 : r:data = 29'b;
+	  
+	  
+	  8'h1f : r:data = 29'b;
+	  8'h2f : r:data = 29'b;
+	  8'h3f : r:data = 29'b;
+	  8'h4f : r:data = 29'b;
+	  8'h5f : r:data = 29'b;
+	  8'h6f : r:data = 29'b;
+	  8'h7f : r:data = 29'b;
+	  8'h8f : r:data = 29'b;
+	  8'h9f : r:data = 29'b;
+	  8'haf : r:data = 29'b;
+	  8'hbf : r:data = 29'b;
+	  8'hcf : r:data = 29'b;
+	  8'hdf : r:data = 29'b;
+	  8'hef : r:data = 29'b;
+	  8'hff : r:data = 29'b;
+	  
+
+}

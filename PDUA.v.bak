@@ -1,0 +1,65 @@
+module PDUA #(parameter MAX_WIDTH = 8,
+								ADDR_WIDTH = 3)
+(		input wire  clk,
+		input wire  rst,
+		input wire  wr_rdn,
+		// ALU wires
+		input wire  enaf,
+		input wire 	[2:0] selop,
+		input wire  [1:0] shamt,
+		output wire C,
+		output wire N,
+		output wire P,
+		output wire Z,
+		
+		// Register Bank wires
+		input wire  bank_wr_en,
+		input wire  [ADDR_WIDTH-1:0] BusB_addr,
+		input wire  [ADDR_WIDTH-1:0] BusC_addr,
+		
+		//Registers wires
+		input wire	sclr,
+		input wire  ir_en,
+		input wire  mar_en,
+		input wire  mdr_en,
+		input wire  mdr_alu_n,
+		output wire [4:0] out_IR);
+
+wire [MAX_WIDTH-1:0] busA, busB, ,busALU, busC, bus_addr, data_out, data_ram;
+
+system_memory #(.MAX_WIDTH(MAX_WIDTH), .ADDR_WIDTH(ADDR_WIDTH)) SM(
+		.clk(clk),
+		.rst(rst),
+		.data_in(data_ram),
+		.data_out(data_out),
+		.addr_b(bus_addr),
+		.enaf(enaf),
+		.selop(selop),
+		.shamt(shamt),
+		.C(C),
+		.N(N),
+		.P(P),
+		.Z(Z),
+		.bank_wr_en(bank_wr_en),
+		.busB_addr(busB_addr),
+		.busC_addr(busC_addr),
+		.sclr(sclr),
+		.ir_en(ir_en),
+		.mar_en(mar_en),
+		.mdr_en(mdr_en),
+		.mdr_alu_n(mdr_alu_n),
+		.out_IR(out_IR),
+		.busA(busA),
+		.busB(busB),
+		.busC(busC),
+		.busALU(busALU));
+
+sp_ram #(.MAX_WIDTH(MAX_WIDTH), .ADDR_WIDTH(MAX_WIDTH)) RAM(
+		.clk(clk),
+		.wr_rdn(wr_rdn),
+		.addr(bus_addr),
+		.w_data(data_out),
+		.r_data(data_ram));
+
+endmodule
+

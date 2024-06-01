@@ -1,0 +1,58 @@
+`timescale 1 ns/10 ps
+
+module control_unit_tb_1;
+  //signal declaration
+  localparam M = 8;
+  localparam A = 3;
+  reg  clk_tb;
+  reg  rst_tb;
+  reg  wr_rdn_tb;
+  
+  // ALU
+  reg  enaf_tb;
+  reg  [2:0] selop_tb;
+  reg  [1:0] shamt_tb;
+  wire C_tb;
+  wire N_tb;
+  wire P_tb;
+  wire Z_tb;
+  
+  //register bank
+  reg  bank_wr_en_tb;
+  reg  [A-1:0] BusB_addr_tb;
+  reg  [A-1:0] BusC_addr_tb;
+  
+  //Register wires
+  reg  sclr_tb;
+  reg  ir_en_tb;
+  reg  mar_en_tb;
+  reg  mdr_en_tb;
+  reg  mdr_alu_n_tb;
+  wire [4:0] out_IR_tb;
+
+  //instantiate DUT
+  PDUA #(.MAX_WIDTH(8), .ADDR_WIDTH(3)) DUT(
+		.clk(clk_tb),
+		.rst(rst_tb),
+		);
+		
+  //Clock generation
+  
+  always
+  begin
+    clk_tb = 1'b0;
+	 # 25;
+	 clk_tb = 1'b1;
+	 # 25;
+  end
+  
+  //en el register bank el PC inicia en 1
+  
+  //test sigma generator
+  initial
+  begin
+	 
+
+	 $stop;
+   end
+endmodule 

@@ -1,0 +1,32 @@
+module system_memory (#parameter MAX_WIDTH = 8,
+											ADDR_WIDTH = 3)
+(		input wire  clk,
+		input wire  rst,
+		input wire  [MAX_WIDTH-1:0] data_in,  // BUS_DATA_IN
+		output wire [MAX_WIDTH-1:0] data_out, // BUS_DATA_OUT
+		output wire [MAX_WIDTH-1:0] addr_b,   // ADRESS_BUS
+		// ALU wires
+		input wire  enaf,
+		input wire 	[2:0] selop,
+		input wire  [1:0] shamt,
+		output wire C,
+		output wire N,
+		output wire P,
+		output wire Z,
+		
+		// Register Bank wires
+		input wire  bank_wr_en,
+		input wire  [ADDR_WIDTH-1:0] BusB_addr,
+		input wire  [ADDR_WIDTH-1:0] BusC_addr,
+		
+		//Registers wires
+		input wire  ir_en,
+		input wire  mar_en,
+		input wire  mdr_en,
+		input wire  mdr_alu_n);
+
+wire [MAX_WIDTH-1:0] busA;
+wire [MAX_WIDTH-1:0] busB;
+wire [MAX_WIDTH-1:0] busC;
+		
+										

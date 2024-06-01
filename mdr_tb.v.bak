@@ -1,0 +1,108 @@
+`timescale 1 ns/10 ps
+
+module mdr_tb();
+  //signal declaration
+  localparam M = 8;
+  localparam D = 3;
+  reg  clk_tb;
+  reg  wr_en_tb;
+  reg  [D-1:0] w_addr_tb;
+  reg  [D-1:0] r_addr_tb;
+  reg  [M-1:0] w_data_tb;
+  wire [M-1:0] r_data_tb;
+  wire [M-1:0] r2_data_tb;
+
+  //instantiate DUT
+  RegisterFile #(.DATA_WIDTH(8), .ADDR_WIDTH(3)) DUT (.clk(clk_tb), .wr_en(wr_en_tb), .w_addr(w_addr_tb), 
+                              .r_addr(r_addr_tb), .w_data(w_data_tb), .r_data(r_data_tb),
+										.r2_data(r2_data_tb));
+  
+  //Clock generation
+ initial clk_tb = 0;
+ always  #25 clk_tb = ~clk_tb; 
+  
+  //test sigma generator
+  initial
+  begin
+  
+    //test vector 0
+	 wr_en_tb = 1'b1;
+	 w_addr_tb = 3'b000;
+	 w_data_tb = 8'b00000000;
+	 r_addr_tb = 3'b000;
+	 # 25;
+	 
+	 //test vector 1
+	 wr_en_tb = 1'b1;
+	 w_addr_tb = 3'b001;
+	 w_data_tb = 8'b00000000;
+	 r_addr_tb = 3'b000;
+	 # 75;
+	 
+	 //test vector 2
+	 wr_en_tb = 1'b1;
+	 w_addr_tb = 3'b010;
+	 w_data_tb = 8'b00000000;
+	 r_addr_tb = 3'b000;
+	 # 125;
+	 
+	 //test vector 3
+	 wr_en_tb = 1'b1;
+	 w_addr_tb = 3'b011;
+	 w_data_tb = 8'b00001000;
+	 r_addr_tb = 3'b011;
+	 # 175;
+	 
+	 //test vector 3
+	 wr_en_tb = 1'b1;
+	 w_addr_tb = 3'b111;
+	 w_data_tb = 8'b00001000;
+	 r_addr_tb = 3'b011;
+	 # 225;
+	 
+	 
+//	 rst_tb = 1'b0;
+//	 enaf_tb = 1'b0;
+//	 carry_tb = 1'b0;
+//	 dataa_tb = 8'b11111111;
+//	 # 125;
+//	 
+//	 //test vector 1
+//	 rst_tb = 1'b0;
+//	 enaf_tb = 1'b1;
+//	 carry_tb = 1'b0;
+//	 dataa_tb = 8'b11111111;
+//	 # 100;
+//	 
+//	 //test vector 2
+//	 rst_tb = 1'b0;
+//	 enaf_tb = 1'b1;
+//	 carry_tb = 1'b0;
+//	 dataa_tb = 8'b00000000;
+//	 # 100;
+//	 
+//	 //test vector 3
+//	 rst_tb = 1'b1;
+//	 enaf_tb = 1'b1;
+//	 carry_tb = 1'b0;
+//	 dataa_tb = 8'b00000000;
+//	 # 100;
+//	 
+//	 //test vector 4
+//	 rst_tb = 1'b0;
+//	 enaf_tb = 1'b1;
+//	 carry_tb = 1'b1;
+//	 dataa_tb = 8'b00001001;
+//	 # 100;
+//	 
+//	 //test vector 5
+//	 rst_tb = 1'b0;
+//	 enaf_tb = 1'b0;
+//	 carry_tb = 1'b0;
+//	 dataa_tb = 8'b11111111;
+//	 # 100;
+//	 
+	 //stop simulation
+	 $stop;
+   end
+endmodule 

@@ -1,0 +1,11 @@
+module mux2to1 
+(
+    input wire m1,
+	 input wire m2,
+    input wire sel,  // La señal de selección
+    output wire out        // La salida
+);
+
+assign y = sel ? m2 : m1;
+
+endmodule
